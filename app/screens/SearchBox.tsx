@@ -8,18 +8,28 @@ import { ListView } from '../components/ListView'
 import { useState } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ListCard from "../components/ListCard";
+import Axios from "axios"
 const SearchBox = (props) => {
     const details = useSelector(state => state)
     const dispatch = useDispatch()
     const [search, setSearch] = useState([])
     const { characterDetails } = details.character
 
-    const handlePress = (text) => {
+    const handlePress = async (text) => {
         const lowerCaseData = text.toLowerCase()
-        const filteredData = characterDetails.filter(data => {
-            return data.name.toLowerCase().includes(lowerCaseData)
-        })
-        setSearch(filteredData);
+        let res = await Axios.get(
+            `https://www.breakingbadapi.com/api/characters?name=${text}`
+      
+          );
+          if(res.status==200)
+          {
+            setSearch(res.data);
+          }
+        // const filteredData = characterDetails.filter(data => {
+        //     return data.name.toLowerCase().includes(lowerCaseData)
+        // })
+       // console.log(res.data)
+        
     }
 
     const ifExist = (favCharacter) => {
