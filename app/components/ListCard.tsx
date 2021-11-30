@@ -14,7 +14,6 @@ export default class ListCard extends Component {
     constructor(props) {
         super(props)
     }
-    
     render()
     {
         const {data,navigation,onclicked,ifExist,removeFromList,onFavoorateItem}=this.props
