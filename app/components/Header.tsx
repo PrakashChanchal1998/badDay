@@ -6,6 +6,7 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
+
 export default class Header extends Component {
     constructor(props) {
         super(props)
@@ -16,6 +17,7 @@ export default class Header extends Component {
             <View style={styles.CONTAINER}>
                 <View style={styles.HORIZANTALAYOUT}>
                     <Text style={styles.TEXTSIZE}>The Breaking Bad</Text>
+                    <View style={styles.HORIZANTALAYOUT}>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('SearchBox')}
                     >
@@ -36,6 +38,7 @@ export default class Header extends Component {
                             resizeMode="contain"
                         />
                     </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         )
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     IMAGE_STYLE: {
-        margin: 15,
+        margin: 13,
         height: 35,
         width: 35,
     }

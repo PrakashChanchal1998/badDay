@@ -2,7 +2,7 @@ import React from "react"
 import { Text, Image, StyleSheet, View, ImageBackground,SafeAreaView ,TouchableOpacity,ScrollView } from "react-native"
 import { useSelector, useDispatch } from 'react-redux';
 import { API_CALL, FAVOURATE_LIST, REMOVE_LIST } from "../store/action/Count"
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 const ProfileDetails = (props) => {
   const details = useSelector(state => state)
   const dispatch = useDispatch()
@@ -61,10 +61,8 @@ const ProfileDetails = (props) => {
             resizeMode={'stretch'}
             style={styles.IMG_STYLE}
           />
-          <View style={{marginLeft:"25%"}}>
           <Text style={styles.TEXT_STYLE}>{character.name}</Text>
           <Text style={styles.NICKNAME_TEXT_STYLE}>{character.nickname}</Text>
-          </View>
           <View>
             <Text style={styles.COMMON_TITLE_STYLE}>Potrayed</Text>
             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
@@ -109,12 +107,13 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize:26,
     fontWeight:'bold',
-    marginBottom:5
+    marginBottom:5,
+    textAlign:'center'
   },
   NICKNAME_TEXT_STYLE: {
     color: '#ffffff',
     fontSize:16,
-    marginLeft:60,
+    textAlign:'center',
     marginBottom:20
   },
   IMG_STYLE: {

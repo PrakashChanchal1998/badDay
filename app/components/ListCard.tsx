@@ -6,11 +6,15 @@ import { API_CALL, FAVOURATE_LIST, REMOVE_LIST } from "../store/action/Count"
 import _ from "lodash"
 import { ListView } from '../components/ListView'
 import { useState } from "react";
+import { SvgXml } from 'react-native-svg';
+import Heart from "../assets/HEART.svg"
+import HeartFilled from "../assets/HEART_FILLED.svg"
 export default class ListCard extends Component {
     
     constructor(props) {
         super(props)
     }
+    
     render()
     {
         const {data,navigation,onclicked,ifExist,removeFromList,onFavoorateItem}=this.props
@@ -24,19 +28,15 @@ export default class ListCard extends Component {
           style={styles.IMG_SIZE}
         />
         </TouchableOpacity>
-        <View style={{ flexDirection: 'row', width: "90%", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: 'row', width: "90%", padding: 15, justifyContent: "space-between" }}>
           <View>
-            <Text style={styles.TEXTSIZE}>{data.name}</Text>
+            <Text style={styles.TEXTSIZE} numberOfLines={1}>{data.name}</Text>
             <Text style={styles.TEXTSTLYE}>{data.nickname}</Text>
           </View>
           <TouchableOpacity
             onPress={() => ifExist(data) ? removeFromList(data) : onFavoorateItem(data)}
           >
-            <Image
-              source={ifExist(data) ? require('../assets/HEART_FILLED.png') : require('../assets/HEART.png')}
-              style={styles.IMAGE_STYLE}
-              resizeMode="contain"
-            />
+             <SvgXml width="38" height="38" xml={ifExist(data) ?HeartFilled:Heart} style={styles.HEART_STYLE} />
           </TouchableOpacity>
         </View>
       </View>
@@ -58,6 +58,12 @@ export default class ListCard extends Component {
         height: 35,
         width: 35,
     },
+    HEART_STYLE: {
+      justifyContent:"flex-end",
+      marginTop:10,
+      marginLeft:10,
+      MarginBottom:10,
+  },
     LIST_CONTAINER: {
         margin: 10,
         marginLeft: 15,

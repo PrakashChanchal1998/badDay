@@ -6,7 +6,7 @@ import { API_CALL, FAVOURATE_LIST, REMOVE_LIST, PROFILE_DETAIL } from "../store/
 import _ from "lodash"
 import { ListView } from '../components/ListView'
 import { useState } from "react";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Feather';
 import ListCard from "../components/ListCard";
 import Axios from "axios"
 const SearchBox = (props) => {
@@ -14,17 +14,23 @@ const SearchBox = (props) => {
     const dispatch = useDispatch()
     const [search, setSearch] = useState([])
     const { characterDetails } = details.character
-
-    const handlePress = async (text) => {
+    
+    const handlePress =  (text) => {
         const lowerCaseData = text.toLowerCase()
-        let res = await Axios.get(
+        let res =  Axios.get(
             `https://www.breakingbadapi.com/api/characters?name=${text}`
       
           );
-          if(res.status==200)
-          {
-            setSearch(res.data);
-          }
+          
+          setTimeout(()=>{
+              console.log("resss",res,"rss")
+            if(res._W.status==200)
+            {
+              setSearch(res._W.data);
+            }
+  
+          },2000);
+         
         // const filteredData = characterDetails.filter(data => {
         //     return data.name.toLowerCase().includes(lowerCaseData)
         // })
@@ -66,7 +72,7 @@ const SearchBox = (props) => {
                     onChangeText={(text) => handlePress(text)}
                     style={styles.TEXTINPUT_CONTAINER}
                 />
-                <Icon name="close" size={30}
+                <Icon name="x" size={30}
                     color="#ffffff"
                     style={{ padding: 20 }}
                     onPress={() => props.navigation.goBack()} />
